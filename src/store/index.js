@@ -48,7 +48,6 @@ const state = {
     getAdvert5: [],
     getAdvert9: []
 
-
 }
 
 const getters = {
@@ -143,13 +142,12 @@ const actions = {
     getAdvert({commit, state}, position) {
         axios.get("http://47.75.166.143:8080/front/data/getAdvert?network=24zhiboba&position=" + position).then(resp => {
             if(resp.data.status === "200") {
-                console.log(resp.data.data.adverts);
+                //console.log(resp.data.data.adverts);
                 commit("GET_ADVERT", {data: resp.data.data.adverts, position: position});
             }
         })
     }
-
-
+    
 }
 
 const mutations = {
@@ -173,22 +171,23 @@ const mutations = {
     ["GET_ADVERT"](state, data) {
         switch (data.position) {
             case 2:
-                this.getAdvert2 = data.data;
+                state.getAdvert2 = data.data;
                 break;
             case 3:
-                this.getAdvert3 = data.data;
+                state.getAdvert3 = data.data;
                 break;
             case 4:
-                this.getAdvert4 = data.data;
+                state.getAdvert4 = data.data;
                 break;    
             case 5:
-                this.getAdvert5 = data.data;
+                state.getAdvert5 = data.data;
                 break;    
             case 9:
-                this.getAdvert9 = data.data;
+                state.getAdvert9 = data.data;
                 break;    
         }
-    }
+    },
+
 }
 
 

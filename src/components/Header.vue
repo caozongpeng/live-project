@@ -2,7 +2,7 @@
     <header id="header">
         <div class="container_nav">
             <div class="subnav_box">
-                <div class="nav_content">
+                <div :style="{width: myWidth}" class="nav_content">
                     <div class="logo" @click="goUrl('/')"  style="cursor: pointer;"></div>
                 </div>
             </div>
@@ -12,7 +12,12 @@
 
 <script>
 export default {
-    
+    props: {
+        myWidth: {
+            type: String,
+            default: ""
+        }
+    },
     methods: {
         goUrl(url) {
             window.location.href = url;
@@ -34,7 +39,7 @@ export default {
         background: #fff;
         // background-image: linear-gradient(-180deg, #017bd1 0%, #017bd0 100%);
         .nav_content {
-            width: 1000px;
+            // width: 1000px;
             margin: 0 auto;
             .logo {
                 background: url(../assets/logo.png) center center no-repeat;

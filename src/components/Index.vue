@@ -1,5 +1,6 @@
 <template>
   <div id="index">
+    <v-header myWidth="1000px"></v-header>
     <div class="banner">
         <el-carousel>
             <el-carousel-item v-for="item in banner" :key="item.index" height="200px">
@@ -244,11 +245,16 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import Header from './Header'
 export default {
   name: 'Index',
+  components: {
+    "v-header": Header
+  },
   data () {
     return {
         //projectData: []
+        myWidth: "1000px",
         active: -1,
         active1: -1        
     }
@@ -279,6 +285,9 @@ export default {
       getTableList(index, id) {
           this.active1 = index;
           this.$store.dispatch("getTableList", id);
+      },
+      handleClick(obj) {
+          window.open("/#/live?todatMatchId="+ obj.id, "_blank");
       }
   }
 }
