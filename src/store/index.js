@@ -5,6 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const state = {
+    // Index
     imgList:[],
     projectData:[],
     matchs:[],
@@ -38,10 +39,20 @@ const state = {
         match: [],
         date: ""
       }
-    }
+    },
+
+    // Live
+    getAdvert2: [],
+    getAdvert3: [],
+    getAdvert4: [],
+    getAdvert5: [],
+    getAdvert9: []
+
+
 }
 
 const getters = {
+    // Index 
     banner(state) {
         return state.imgList;
     },
@@ -56,10 +67,28 @@ const getters = {
     },
     linkList(state) {
         return state.linkList;
+    },
+    // Live
+    getAdvert2(state) {
+        return state.getAdvert2;
+    },
+    getAdvert3(state) {
+        return state.getAdvert3;
+    },
+    getAdvert4(state) {
+        return state.getAdvert4;
+    },
+    getAdvert5(state) {
+        return state.getAdvert5;
+    },
+    getAdvert9(state) {
+        return state.getAdvert9;
     }
+     
 }
 
 const actions = {
+    // Index
     getBanner({commit, state}) {
         axios.post('http://47.75.166.143:8080/front/data/getBanner').then(resp => {
             if(resp.data.status === "200") {
@@ -108,10 +137,23 @@ const actions = {
                 commit("GET_LINKLIST", resp.data.data.links);
             }
         });
+    },
+
+    // Live
+    getAdvert({commit, state}, position) {
+        axios.get("http://47.75.166.143:8080/front/data/getAdvert?network=24zhiboba&position=" + position).then(resp => {
+            if(resp.data.status === "200") {
+                console.log(resp.data.data.adverts);
+                commit("GET_ADVERT", {data: resp.data.data.adverts, position: position});
+            }
+        })
     }
+
+
 }
 
 const mutations = {
+    // Index
     ["GET_BANNER"](state, data) {
         state.imgList = data;
     },
@@ -126,6 +168,26 @@ const mutations = {
     },
     ["GET_LINKLIST"](state, data) {
         state.linkList = data || [];
+    },
+    // Live
+    ["GET_ADVERT"](state, data) {
+        switch (data.position) {
+            case 2:
+                this.getAdvert2 = data.data;
+                break;
+            case 3:
+                this.getAdvert3 = data.data;
+                break;
+            case 4:
+                this.getAdvert4 = data.data;
+                break;    
+            case 5:
+                this.getAdvert5 = data.data;
+                break;    
+            case 9:
+                this.getAdvert9 = data.data;
+                break;    
+        }
     }
 }
 
