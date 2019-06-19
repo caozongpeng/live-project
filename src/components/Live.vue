@@ -28,7 +28,7 @@
                     class="toLive"
                     v-bind:class="active==index?'picked':''"
                     v-for="(item,index) in data.chains"
-                    :key="index"
+                    :key="'5'+index"
                     @click="handleChangeUrl(item.url,index,item.type)"
                 >{{item.name}}</a>
                 <a
@@ -36,13 +36,13 @@
                     target="_blank"
                     class="toLive"
                     v-for="(item,index) in getAdvert4"
-                    :key="index"
+                    :key="'6'+index"
                 >{{item.words}}</a>
                 </div>
             </div>
             <div class="liveCotainer" v-if="!videoIfr">
                 <div class="guangg" v-show="vGuangShow && getAdvert9.length!=0">
-                    <a :href="item.jumpUrl" target="_blank" :key="item" v-for="item in getAdvert9">
+                    <a :href="item.jumpUrl" target="_blank" :key="'1'+index"  v-for="(item,index) in getAdvert9">
                     <img width="780px" height="454px" :src="'http://47.75.166.143:8080'+item.icon" alt>
                     </a>
                    
@@ -52,7 +52,7 @@
             </div>
             <div class="liveCotainer" v-if="videoIfr">
                 <div class="guangg" v-show="vGuangShow && getAdvert9.length!=0">
-                    <a :href="item.jumpUrl" target="_blank" :key="item" v-for="item in getAdvert9">
+                    <a :href="item.jumpUrl" target="_blank" :key="'2'+index" v-for="(item,index) in getAdvert9">
                     <img width="780px" height="454px" :src="'http://47.75.166.143:8080'+item.icon" alt>
                     </a>
                     <div class="timeOff" @click="vGuangShow = false">{{timeCount}} 秒钟后自动关闭 x</div>
@@ -66,7 +66,7 @@
                 scrolling="no"
                 ></iframe>
             </div>
-            <div v-for="item in getAdvert5" :key="item" style="margin:0 auto;width:780px;">
+            <div v-for="(item,index) in getAdvert5" :key="'3'+index" style="margin:0 auto;width:780px;">
                 <a :href="item.jumpUrl" target="_blank">
                 <img
                     width="780px"
@@ -78,37 +78,20 @@
                 </a>
             </div> 
         </div>
-        <div id="footer">
-            <div class="fglo_bg">
-                <div class="link fl" id="js_link">
-                    <!-- <h3 class="hl_icon">友情链接</h3> -->
-                    <div class="link_c">
-                        <div>
-                            <span style="color:#888;margin-right:20px;">友情链接：</span>
-                            <a v-for="(item,index) in linkList" :key="index" :href="item.link" target="_blank" >{{item.linkName}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="foot_global">
-                <p>24直播吧所有视频数据均调用第三方资源，不提供任何视听上传服务，如有版权问题请联系我们。</p>
-                <p>微信客服：zhibomei2019  </p>
-                <p>Copyright @ 2018 24直播吧</p>
-                </div>
-            </div>
-            <!--footer-end-->
-        </div>
+        <v-footer myWidth="780px"></v-footer>
     </div>
 </template>
 <script>
-
 import Header from './Header'
+import Footer from './Footer'
 import {mapGetters} from 'vuex'
 import { Loading } from 'element-ui'
 import axios from 'axios'
 export default {
     name: "Live",
     components: {
-        "v-header": Header
+        "v-header": Header,
+        "v-footer": Footer
     },
     data () {
         return {
@@ -135,10 +118,10 @@ export default {
         this.$store.dispatch("getAdvert",3);
         this.$store.dispatch("getAdvert",4);
         this.$store.dispatch("getAdvert",5);
-         this.$store.dispatch("getAdvert",9);
+        this.$store.dispatch("getAdvert",9);
         this.$store.dispatch("getLinkList");
         this.init();
-        // this.videoGu();
+        this.videoGu();
     },
     computed: mapGetters([
         "getAdvert2",
@@ -149,6 +132,23 @@ export default {
         "linkList"
     ]),
     methods: {
+        handleChangeUrl(url, index, type) {
+            console.log(url);
+            console.log(index);
+            console.log(type);
+            this.active =index;
+            if (type == 1) {
+                if (url.indexOf(".m3u8") != -1) {
+                    this.videoIfr = "";
+                    this.videoObjectPc.video = url;
+                    let player = new ckplayer(this.videoObjectPc);
+                } else {
+                    this.videoIfr = url;
+                }
+            } else {
+                window.open(url, "_blank");
+            }
+        },
         videoGu() {
             let clock = setInterval(()=>{
                 this.timeCount --;
@@ -166,8 +166,6 @@ export default {
             });
 
             axios.get("http://47.75.166.143:8080/front/tmatch/getChain?todatMatchId=" + this.todatMatchId).then(resp => {
-                // console.log(resp);
-                // console.log(resp.data.data);
                 this.data = resp.data.data;
                 if(resp.data.status === "200") {
                     if (resp.data.data.chains.length != 0) {
@@ -194,13 +192,10 @@ export default {
                     let player = new ckplayer(this.videoObjectPc);
                 }
             });
-
-
         }
     }
 }
 </script>
-
 
 <style lang="less" scoped>
 #live {
@@ -243,55 +238,6 @@ export default {
     }
     .today {
         position: relative;
-    }
-    #footer {
-        // position: absolute;
-        bottom: 0;
-        margin-top: 50px;
-        // padding-top: 20px;
-        width: 780px;
-        left: 50%;
-        margin: 50px auto 0;
-    }
-        #footer .foot {
-        width: 780px;
-        overflow: hidden;
-        padding-bottom: 33px;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    #footer .link {
-        padding-right: 20px;
-        position: relative;
-        margin-left: 50px;
-    }
-    #footer h3 {
-        font-size: 16px;
-        line-height: 33px;
-        color: #fff;
-        margin-bottom: 8px;
-        font-weight: 700;
-    }
-    .link_c a {
-        color: #999;
-        display: inline-block;
-        margin-right: 20px;
-        line-height: 26px;
-    }
-    .fglo_bg {
-        background: #1b1616;
-        // height: 85px;
-        padding-top: 18px;
-        text-align: center;
-    }
-    .foot_global {
-        max-width: 780px;
-        margin: 0 auto;
-    }
-    .foot_global p {
-        color: #b1b1b1;
-        line-height: 24px;
     }
 }
 </style>

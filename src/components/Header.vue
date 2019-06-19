@@ -15,7 +15,7 @@ export default {
     props: {
         myWidth: {
             type: String,
-            default: ""
+            default: "1000px"
         }
     },
     methods: {

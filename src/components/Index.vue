@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-    <v-header myWidth="1000px"></v-header>
+    <v-header></v-header>
     <div class="banner">
         <el-carousel>
             <el-carousel-item v-for="item in banner" :key="item.index" height="200px">
@@ -10,8 +10,8 @@
     </div>
     <div class="navList"> 
       <ul>
-        <li @click="handleClickActive()">全部</li>
-        <li v-if="index<=1" v-for="(item,index) in projectData" @click="handleClickActive(index,item.id)" :key="item.id">{{item.name}}</li>
+        <li :class="activeClass == -1 ? 'active' :''" @click="handleClickActive()">全部</li>
+        <li :class="activeClass == index ? 'active' :''" v-if="index<=1" v-for="(item,index) in projectData" @click="handleClickActive(index,item.id)" :key="item.id">{{item.name}}</li>
       </ul>
     </div>
     <div class="contentList">
@@ -222,41 +222,25 @@
         </el-col> 
       </el-row>
     </div>
-    <div id="footer">
-        <div class="fglo_bg">
-          <div class="link fl" id="js_link">
-            <!-- <h3 class="hl_icon">友情链接</h3> -->
-            <div class="link_c">
-              <div>
-                <span style="color:#888;margin-right:20px;">友情链接</span><a v-for="(item,index) in linkList" :key="index" :href="item.link" target="_blank">{{item.linkName}}</a>
-              </div>
-            </div>
-          </div>
-          <div class="foot_global">
-              <p>24直播吧所有视频数据均调用第三方资源，不提供任何视听上传服务，如有版权问题请联系我们。</p>
-              <p>微信客服：zhibomei2019  </p>
-              <p>Copyright @ 2018 24直播吧</p>
-          </div> 
-        </div>
-        <!--footer-end-->  
-    </div>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 import Header from './Header'
+import Footer from './Footer'
 export default {
   name: 'Index',
   components: {
-    "v-header": Header
+    "v-header": Header,
+    "v-footer": Footer
   },
   data () {
     return {
-        //projectData: []
-        myWidth: "1000px",
         active: -1,
-        active1: -1        
+        active1: -1,
+        activeClass: -1        
     }
   },
   mounted() {
@@ -276,24 +260,27 @@ export default {
   methods: {
       handleClickActive(index, id) {
           this.active1 = -1;
+          this.activeClass = index;
           if(!id) {
+            this.activeClass = -1;
             this.$store.dispatch("getMatchByProject");
           } else {
             this.$store.dispatch("getMatchByProject",id);
           }
+          // 刷新列表
+          this.getTableList();
       },
       getTableList(index, id) {
           this.active1 = index;
           this.$store.dispatch("getTableList", id);
       },
       handleClick(obj) {
-          window.open("/#/live?todatMatchId="+ obj.id, "_blank");
+          window.open("/live?todatMatchId="+ obj.id, "_blank");
       }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 #index {
     .banner {
@@ -305,12 +292,16 @@ export default {
         background: #333;
         width: 1000px;
         margin: 0 auto;
+        .active {
+            background-color: #000;
+        }
         ul {
             li {
                 float: left;
                 font-size: 16px;
                 line-height: 48px;
-                margin: 0 20px;
+                // margin: 0 20px;
+                width: 80px;
                 color: #999;
                 cursor: pointer;
                 &.on {
@@ -325,7 +316,6 @@ export default {
         .contentListLeft {
             background: #f3f3f3;
             padding: 5px;
-            // width: 184px;
             ul {
                 li {
                     cursor: pointer;
@@ -346,54 +336,6 @@ export default {
                 }
             }
         }
-    }
-    #footer {
-        bottom: 0;
-        margin-top: 50px;
-        width: 1000px;
-        left: 50%;
-        margin: 50px auto 0;
-        background: #002b62;
-    }
-    #footer .foot {
-        width: 1000px;
-        overflow: hidden;
-        padding-bottom: 33px;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    #footer .link {
-        padding-right: 20px;
-        position: relative;
-        margin-left: 50px;
-    }
-    #footer h3 {
-        font-size: 16px;
-        line-height: 33px;
-        color: #fff;
-        margin-bottom: 8px;
-        font-weight: 700;
-    }
-    .link_c a {
-        color: #999;
-        display: inline-block;
-        margin-right: 20px;
-        line-height: 26px;
-    }
-    .fglo_bg {
-        background: #1b1616;
-        // height: 85px;
-        padding-top: 18px;
-        text-align: center;
-    }
-    .foot_global {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-    .foot_global p {
-        color: #b1b1b1;
-        line-height: 24px;
     }
 }
 </style>

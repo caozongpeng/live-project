@@ -104,11 +104,10 @@ const actions = {
             }
         })
     },
-    getMatchByProject({commit, state}, id) {
+    getMatchByProject({commit, state}, matchId) {
         // let matchId = id || state.projectData[0].id;
-        let matchId = id;
         let url = "";
-        if (id) {
+        if (matchId) {
             url = "http://47.75.166.143:8080/front/tmatch/getMatchByProject?projectId=" +matchId;
         } else {
             url = "http://47.75.166.143:8080/front/tmatch/getMatchByProject";
