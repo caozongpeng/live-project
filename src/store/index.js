@@ -4,6 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+const apiUrl = "http://47.75.166.143:8080";
 const state = {
     // Index
     imgList:[],
@@ -82,56 +83,49 @@ const getters = {
     },
     getAdvert9(state) {
         return state.getAdvert9;
-    }
-     
+    }     
 }
 
 const actions = {
     // Index
     getBanner({commit, state}) {
-        axios.post('http://47.75.166.143:8080/front/data/getBanner').then(resp => {
+        axios.post(apiUrl + '/front/data/getBanner').then(resp => {
             if(resp.data.status === "200") {
-                //console.log(resp.data.data.banners);
                 commit("GET_BANNER", resp.data.data.banners);
             }
         })
     },
     getProjects({commit, state}) {
-        axios.post('http://47.75.166.143:8080/front/tmatch/getProjects').then(resp => {
+        axios.post(apiUrl + '/front/tmatch/getProjects').then(resp => {
             if(resp.data.status === "200") {
-                // console.log(resp.data.data.projects);
                 commit("GET_PROJECTS", resp.data.data.projects);
             }
         })
     },
     getMatchByProject({commit, state}, matchId) {
-        // let matchId = id || state.projectData[0].id;
         let url = "";
         if (matchId) {
-            url = "http://47.75.166.143:8080/front/tmatch/getMatchByProject?projectId=" +matchId;
+            url = apiUrl + "/front/tmatch/getMatchByProject?projectId=" +matchId;
         } else {
-            url = "http://47.75.166.143:8080/front/tmatch/getMatchByProject";
+            url = apiUrl + "/front/tmatch/getMatchByProject";
         }
         axios.get(url).then(resp => {
             if(resp.data.status === "200") {
-                //console.log(resp.data.data.matchs);
                 commit("GET_MATCHBYPROJECT", resp.data.data.matchs);
             }
         });
     },
     getTableList({commit, state}, id) {
         let toMatchId = id || [];
-        axios.get("http://47.75.166.143:8080/front/tmatch/getTodayMatch?toMatchId=" +toMatchId).then(resp => {
+        axios.get(apiUrl + "/front/tmatch/getTodayMatch?toMatchId=" +toMatchId).then(resp => {
             if(resp.data.status === "200") {
-                //console.log(resp.data.data);
                 commit("GET_TABLELIST", resp.data.data);
             }
         })
     },
     getLinkList({commit, state}) {
-        axios.get("http://47.75.166.143:8080/front/data/getLink?network=24zhibo").then(resp => {
+        axios.get(apiUrl + "/front/data/getLink?network=24zhibo").then(resp => {
             if(resp.data.status === "200") {
-                //console.log(resp.data.data.links);
                 commit("GET_LINKLIST", resp.data.data.links);
             }
         });
@@ -139,9 +133,8 @@ const actions = {
 
     // Live
     getAdvert({commit, state}, position) {
-        axios.get("http://47.75.166.143:8080/front/data/getAdvert?network=24zhiboba&position=" + position).then(resp => {
+        axios.get(apiUrl + "/front/data/getAdvert?network=24zhiboba&position=" + position).then(resp => {
             if(resp.data.status === "200") {
-                //console.log(resp.data.data.adverts);
                 commit("GET_ADVERT", {data: resp.data.data.adverts, position: position});
             }
         })

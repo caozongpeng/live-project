@@ -37,9 +37,7 @@ export default {
         line-height: 80px;
         border-bottom: 1px solid rgba(0,0,0,.1);
         background: #fff;
-        // background-image: linear-gradient(-180deg, #017bd1 0%, #017bd0 100%);
         .nav_content {
-            // width: 1000px;
             margin: 0 auto;
             .logo {
                 background: url(../assets/logo.png) center center no-repeat;

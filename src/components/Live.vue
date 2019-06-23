@@ -2,13 +2,12 @@
     <div id="live">
         <v-header myWidth="780px"></v-header>
         <div class="today" style="margin-top: 90px;">
-            <!-- PC端显示这个 -->
             <div class="info">
                 <img src="../assets/bgLive.jpg" width="781px" class="bg">
                 <a href="index.html" class="back"></a>
                 <div class="infoWrap">
                     <div class="list1">
-                        <img class="first homeTeam_img" :src="'http://47.75.166.143:8080'+data.matchImage1">
+                        <img class="first homeTeam_img" :src="url + data.matchImage1">
                         <span class="name1 homeTeam">{{data.hometeam}}</span>
                     </div>
                     <div class="list2">
@@ -16,7 +15,7 @@
                         <p class="gameTime matchTime_pc">{{data.startDate}} {{data.startTime}}</p>
                     </div>
                     <div class="list3">
-                        <img class="second visitingTeam_img" :src="'http://47.75.166.143:8080'+data.matchImage2">
+                        <img class="second visitingTeam_img" :src="url + data.matchImage2">
                         <span class="name2 visitingTeam">{{data.visitingTeam}}</span>
                     </div>
                 </div>
@@ -43,9 +42,8 @@
             <div class="liveCotainer" v-if="!videoIfr">
                 <div class="guangg" v-show="vGuangShow && getAdvert9.length!=0">
                     <a :href="item.jumpUrl" target="_blank" :key="'1'+index"  v-for="(item,index) in getAdvert9">
-                    <img width="780px" height="454px" :src="'http://47.75.166.143:8080'+item.icon" alt>
+                        <img width="780px" height="454px" :src="url + item.icon" alt>
                     </a>
-                   
                     <div class="timeOff" @click="vGuangShow = false">{{timeCount}} 秒钟后自动关闭 x</div>
                 </div>
                 <div id="video"></div>
@@ -53,7 +51,7 @@
             <div class="liveCotainer" v-if="videoIfr">
                 <div class="guangg" v-show="vGuangShow && getAdvert9.length!=0">
                     <a :href="item.jumpUrl" target="_blank" :key="'2'+index" v-for="(item,index) in getAdvert9">
-                    <img width="780px" height="454px" :src="'http://47.75.166.143:8080'+item.icon" alt>
+                        <img width="780px" height="454px" :src="url + item.icon" alt>
                     </a>
                     <div class="timeOff" @click="vGuangShow = false">{{timeCount}} 秒钟后自动关闭 x</div>
                 </div>
@@ -72,7 +70,7 @@
                     width="780px"
                     height="80px"
                     style="margin-top:10px;"
-                    :src="'http://47.75.166.143:8080'+item.icon"
+                    :src="url + item.icon"
                     alt
                 >
                 </a>
@@ -110,7 +108,8 @@ export default {
             videoIfr: "",
             vGuangShow:true,
             timeCount:10,
-            duiShow:true
+            duiShow:true,
+            url: "http://47.75.166.143:8080"
         }
     },
     mounted() {
@@ -133,9 +132,6 @@ export default {
     ]),
     methods: {
         handleChangeUrl(url, index, type) {
-            console.log(url);
-            console.log(index);
-            console.log(type);
             this.active =index;
             if (type == 1) {
                 if (url.indexOf(".m3u8") != -1) {
@@ -165,7 +161,7 @@ export default {
                 text: "数据加载中..."
             });
 
-            axios.get("http://47.75.166.143:8080/front/tmatch/getChain?todatMatchId=" + this.todatMatchId).then(resp => {
+            axios.get("http://47.75.166.143:8080/front/tmatch/getChain?todatMatchId=" + this.todatMatchId).then( resp => {
                 this.data = resp.data.data;
                 if(resp.data.status === "200") {
                     if (resp.data.data.chains.length != 0) {
