@@ -1,21 +1,37 @@
-# live-vue-project
+## 体育比赛直播平台
+基于 vue 开发的项目，如果觉得项目不错，请帮忙 `Star` 支持一下。
 
-> A Vue.js project
+### 技术栈
+* vue
+* vuex
+* vuerouter
+* element-ui
+* ckplayer
 
-## Build Setup
-
+### 运行项目
 ``` bash
-# install dependencies
+# clone 项目
+git clone git@github.com:caozongpeng/live-project.git
+
+# 进入项目
+cd live-project
+
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 启动服务
 npm run dev
 
-# build for production with minification
+# 打包项目(需要在index.html里引入文件build/build.js)
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# 会出现一个 dist 目录，将目录上传到服务器部署即可
 ```
+### 界面展示
+* 首页
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+![index](https://github.com/caozongpeng/github-static/blob/master/live-project/index.png)
+
+* 播放页
+
+![live](https://github.com/caozongpeng/github-static/blob/master/live-project/live.png)
