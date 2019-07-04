@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
         '/front': {
             // 测试环境
-            target: 'http://47.75.166.143:8080',  // 接口域名
+            target: 'http://47.244.250.246:8080',  // 接口域名
             changeOrigin: true,  //是否跨域
             pathRewrite: {
                 '^/front': ''   //需要rewrite重写的,

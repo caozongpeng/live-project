@@ -42,7 +42,7 @@
                   </el-table-column>
                   <el-table-column width="450">
                     <template slot-scope="scope">
-                      <span style="display:inline-block;text-align:right;width:200px;vertical-align:middle"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="'http://47.75.166.143:8080'+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
+                      <span style="display:inline-block;text-align:right;width:200px;vertical-align:middle"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="url+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
                       <span style="display:inline-block;width:20px;vertical-align:middle;text-align:center"> VS </span>
                       <span style="display:inline-block;text-align:left;width:200px;vertical-align:middle"><img :src="url + scope.row.matchImage2" v-if="scope.row.matchImage2" width="30px" style="vertical-align:middle;margin-right:10px" alt=""><span style="vertical-align:middle">{{scope.row.visitingTeam}}</span></span>
                     </template>
@@ -69,7 +69,7 @@
                   </el-table-column>
                   <el-table-column width="450">
                     <template slot-scope="scope">
-                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="'http://47.75.166.143:8080'+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
+                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="url+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
                       <span style="display:inline-block;width:20px;vertical-align:middle;text-align:center"> VS </span>
                       <span style="display:inline-block;text-align:left;width:200px;"><img :src="url + scope.row.matchImage2" v-if="scope.row.matchImage2" width="30px" style="vertical-align:middle;margin-right:10px" alt=""><span style="vertical-align:middle">{{scope.row.visitingTeam}}</span></span>
                     </template>
@@ -96,7 +96,7 @@
                   </el-table-column>
                   <el-table-column width="450">
                     <template slot-scope="scope">
-                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="'http://47.75.166.143:8080'+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
+                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="url+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
                       <span style="display:inline-block;width:20px;vertical-align:middle;text-align:center"> VS </span>
                       <span style="display:inline-block;text-align:left;width:200px;"><img :src="url + scope.row.matchImage2" v-if="scope.row.matchImage2" width="30px" style="vertical-align:middle;margin-right:10px" alt=""><span style="vertical-align:middle">{{scope.row.visitingTeam}}</span></span>
                     </template>
@@ -123,7 +123,7 @@
                   </el-table-column>
                   <el-table-column width="450">
                     <template slot-scope="scope">
-                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="'http://47.75.166.143:8080'+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
+                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="url+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
                       <span style="display:inline-block;width:20px;vertical-align:middle;text-align:center"> VS </span>
                       <span style="display:inline-block;text-align:left;width:200px;"><img :src="url + scope.row.matchImage2" v-if="scope.row.matchImage2" width="30px" style="vertical-align:middle;margin-right:10px" alt=""><span style="vertical-align:middle">{{scope.row.visitingTeam}}</span></span>
                     </template>
@@ -150,7 +150,7 @@
                   </el-table-column>
                   <el-table-column width="450">
                     <template slot-scope="scope">
-                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="'http://47.75.166.143:8080'+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
+                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="url+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
                       <span style="display:inline-block;width:20px;vertical-align:middle;text-align:center"> VS </span>
                       <span style="display:inline-block;text-align:left;width:200px;"><img :src="url + scope.row.matchImage2" v-if="scope.row.matchImage2" width="30px" style="vertical-align:middle;margin-right:10px" alt=""><span style="vertical-align:middle">{{scope.row.visitingTeam}}</span></span>
                     </template>
@@ -177,7 +177,7 @@
                   </el-table-column>
                   <el-table-column width="450">
                     <template slot-scope="scope">
-                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="'http://47.75.166.143:8080'+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
+                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="url+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
                       <span style="display:inline-block;width:20px;vertical-align:middle;text-align:center"> VS </span>
                       <span style="display:inline-block;text-align:left;width:200px;"><img :src="url + scope.row.matchImage2" v-if="scope.row.matchImage2" width="30px" style="vertical-align:middle;margin-right:10px" alt=""><span style="vertical-align:middle">{{scope.row.visitingTeam}}</span></span>
                     </template>
@@ -204,7 +204,7 @@
                   </el-table-column>
                   <el-table-column width="450">
                     <template slot-scope="scope">
-                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="'http://47.75.166.143:8080'+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
+                      <span style="display:inline-block;text-align:right;width:200px;"><span style="vertical-align:middle">{{scope.row.hometeam}}</span><img :src="url+scope.row.matchImage1" v-if="scope.row.matchImage1" width="30px" style="vertical-align:middle;margin-left:10px" alt=""></span>
                       <span style="display:inline-block;width:20px;vertical-align:middle;text-align:center"> VS </span>
                       <span style="display:inline-block;text-align:left;width:200px;"><img :src="url + scope.row.matchImage2" v-if="scope.row.matchImage2" width="30px" style="vertical-align:middle;margin-right:10px" alt=""><span style="vertical-align:middle">{{scope.row.visitingTeam}}</span></span>
                     </template>
@@ -241,7 +241,7 @@ export default {
         active: -1,
         active1: -1,
         activeClass: -1,
-        url: "http://47.75.166.143:8080"        
+        url: "http://47.244.250.246:8080"        
     }
   },
   mounted() {

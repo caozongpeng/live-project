@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const apiUrl = "http://47.75.166.143:8080";
+const apiUrl = "http://47.244.250.246:8080";
 const state = {
     // Index
     imgList:[],

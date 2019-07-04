@@ -109,7 +109,7 @@ export default {
             vGuangShow:true,
             timeCount:10,
             duiShow:true,
-            url: "http://47.75.166.143:8080"
+            url: "http://47.244.250.246:8080"
         }
     },
     mounted() {
@@ -161,7 +161,7 @@ export default {
                 text: "数据加载中..."
             });
 
-            axios.get("http://47.75.166.143:8080/front/tmatch/getChain?todatMatchId=" + this.todatMatchId).then( resp => {
+            axios.get("http://47.244.250.246:8080/front/tmatch/getChain?todatMatchId=" + this.todatMatchId).then( resp => {
                 this.data = resp.data.data;
                 if(resp.data.status === "200") {
                     if (resp.data.data.chains.length != 0) {
